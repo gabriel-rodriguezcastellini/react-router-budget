@@ -3,6 +3,7 @@ import { createBudget, fetchData, wait } from "../helpers";
 import Intro from "../components/Intro";
 import { toast } from "react-toastify";
 import AddBudgetForm from "../components/AddBudgetForm";
+import AddExpenseForm from "../components/AddExpenseForm";
 
 export function dashboardLoader() {
   const userName = fetchData("userName");
@@ -51,6 +52,7 @@ const Dashboard = () => {
               <div className="grid-lg">
                 <div className="flex-lg">
                   <AddBudgetForm />
+                  <AddExpenseForm budgets={budgets} />
                 </div>
               </div>
             </div>
