@@ -40,3 +40,10 @@ export const createExpense = ({
     const existingExpenses = fetchData("expenses") ?? [];
     return localStorage.setItem("expenses", JSON.stringify([...existingExpenses, newItem]));
 }
+
+export const formatCurrency = (amount) => {
+    return amount.toLocaleString(undefined, {
+        style: "currency",
+        currency: "USD"
+    })
+}
