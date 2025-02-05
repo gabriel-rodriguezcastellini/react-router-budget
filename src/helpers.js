@@ -13,6 +13,15 @@ export const deleteItem = ({key}) => {
     return localStorage.removeItem(key);
 }
 
+export const calculateSpentByBudget = (budgetId) => {
+    const expenses = fetchData("expenses") ?? [];
+    const budgetSpent = expenses.redure((acc, expense) => {
+        if (expense.budgetId !== budgetId) return acc;
+        return acc+= expense.amount;
+    }, 0)
+    return budgetSpent;
+}
+
 export const createBudget = ({
     name, amount
 }) => {
