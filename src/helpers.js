@@ -15,7 +15,7 @@ export const deleteItem = ({key}) => {
 
 export const calculateSpentByBudget = (budgetId) => {
     const expenses = fetchData("expenses") ?? [];
-    const budgetSpent = expenses.redure((acc, expense) => {
+    const budgetSpent = expenses.reduce((acc, expense) => {
         if (expense.budgetId !== budgetId) return acc;
         return acc+= expense.amount;
     }, 0)
