@@ -22,6 +22,13 @@ export const calculateSpentByBudget = (budgetId) => {
     return budgetSpent;
 }
 
+export const formatPercentage = (amount) => {
+    return amount.toLocaleString(undefined, {
+        style: "percent",
+        minimumFractionDigits: 0,
+    })
+}
+
 export const createBudget = ({
     name, amount
 }) => {
