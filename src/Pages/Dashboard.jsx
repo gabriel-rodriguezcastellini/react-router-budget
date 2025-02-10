@@ -5,11 +5,13 @@ import { toast } from "react-toastify";
 import AddBudgetForm from "../components/AddBudgetForm";
 import AddExpenseForm from "../components/AddExpenseForm";
 import BudgetItem from "../components/BudgetItem";
+import Table from "../components/Table";
 
 export function dashboardLoader() {
   const userName = fetchData("userName");
   const budgets = fetchData("budgets");
-  return { userName, budgets };
+  const expenses = fetchData("expenses");
+  return { userName, budgets, expenses };
 }
 
 export async function dashboardAction({ request }) {
@@ -19,8 +21,8 @@ export async function dashboardAction({ request }) {
 
   if (_action === "newUser") {
     try {
-      localStorage.setItem("userName", JSON.stringify(formData.userName));
-      return toast.success(`Welcome, ${formData.userName}`);
+      localStorage.setItem("userName", JSON.stringify(values.userName));
+      return toast.success(`Welcome, ${values.userName}`);
     } catch (e) {
       throw new Error("There was a problem creating your account.");
     }
@@ -53,7 +55,7 @@ export async function dashboardAction({ request }) {
 }
 
 const Dashboard = () => {
-  const { userName, budgets } = useLoaderData();
+  const { userName, budgets, expenses } = useLoaderData();
   return (
     <>
       {userName ? (
@@ -74,6 +76,16 @@ const Dashboard = () => {
                     <BudgetItem key={budget.id} budget={budget} />
                   ))}
                 </div>
+                {expenses && expenses.length > 0 && (
+                  <div className="grid-md">
+                    <h2>Recent Expenses</h2>
+                    <Table
+                      expenses={expenses.sort(
+                        (a, b) => b.createdAt - a.createdAt
+                      )}
+                    />
+                  </div>
+                )}
               </div>
             ) : (
               <div className="grid-sm">
