@@ -21,6 +21,11 @@ const router = createBrowserRouter([
         errorElement: <Error />,
       },
       {
+        path: "expenses",
+        element: <Dashboard />,
+        loader: dashboardLoader,
+      },
+      {
         path: "logout",
         action: logoutAction,
       },
