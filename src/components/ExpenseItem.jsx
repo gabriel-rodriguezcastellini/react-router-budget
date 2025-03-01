@@ -29,7 +29,7 @@ const ExpenseItem = ({ expense }) => {
           <input type="hidden" name="_action" value="deleteExpense" />
           <input type="hidden" name="expenseId" value={expense.id} />
           <button
-            type="button"
+            type="submit"
             className="btn btn--warning"
             aria-label={`Delete ${expense.name} expense`}
           >
