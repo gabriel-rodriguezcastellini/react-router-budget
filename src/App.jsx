@@ -26,7 +26,7 @@ const router = createBrowserRouter([
         errorElement: <Error />,
       },
       {
-        path: "budget:id",
+        path: "budget/:id",
         element: <BudgetPage />,
       },
       {
