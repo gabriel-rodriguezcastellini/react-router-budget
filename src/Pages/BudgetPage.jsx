@@ -8,6 +8,9 @@ export async function budgetLoader({ params }) {
     key: "id",
     value: params.id,
   })[0];
+  if (!budget) {
+    throw new Error("The budget you're trying to find doesn't exist");
+  }
   return { budget };
 }
 
