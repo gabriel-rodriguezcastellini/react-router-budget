@@ -15,7 +15,7 @@ export async function budgetLoader({ params }) {
     category: "expenses",
     key: "budgetId",
     value: params.id,
-  })[0];
+  });
   if (!budget) {
     throw new Error("The budget you're trying to find doesn't exist");
   }
@@ -23,7 +23,7 @@ export async function budgetLoader({ params }) {
 }
 
 const BudgetPage = () => {
-  const { budget } = useLoaderData();
+  const { budget, expenses } = useLoaderData();
   return (
     <div className="grid-lg">
       <h1 className="h2">
@@ -36,7 +36,7 @@ const BudgetPage = () => {
       {expenses && expenses.length > 0 && (
         <div className="grid-md">
           <h2>
-            <span className="accent">{budget.name}</span>
+            <span className="accent">{budget.name}</span> Expenses
           </h2>
           <Table expenses={expenses} />
         </div>
