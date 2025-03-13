@@ -25,7 +25,7 @@ export async function budgetLoader({ params }) {
 const BudgetPage = () => {
   const { budget, expenses } = useLoaderData();
   return (
-    <div className="grid-lg">
+    <div className="grid-lg" style={{ "--accent": budget.color }}>
       <h1 className="h2">
         <span className="accent">{budget.name}</span> Overview
       </h1>
@@ -38,7 +38,7 @@ const BudgetPage = () => {
           <h2>
             <span className="accent">{budget.name}</span> Expenses
           </h2>
-          <Table expenses={expenses} />
+          <Table expenses={expenses} showBudget={false} />
         </div>
       )}
     </div>
