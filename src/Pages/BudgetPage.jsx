@@ -1,9 +1,10 @@
 import React from "react";
-import { getAllMatchingItems } from "../helpers";
+import { deleteItem, getAllMatchingItems } from "../helpers";
 import { useLoaderData } from "react-router-dom";
 import BudgetItem from "../components/BudgetItem";
 import AddExpenseForm from "../components/AddExpenseForm";
 import Table from "../components/Table";
+import { toast } from "react-toastify";
 
 export async function budgetLoader({ params }) {
   const budget = await getAllMatchingItems({
@@ -20,6 +21,20 @@ export async function budgetLoader({ params }) {
     throw new Error("The budget you're trying to find doesn't exist");
   }
   return { budget, expenses };
+}
+
+export async function budgetAction({ request }) {
+  const data = await request.formData();
+  const { _action, ...values } = Object.fromEntries(data);
+
+  if (_action === "deleteExpense") {
+    try {
+      deleteItem({ key: "expenses", id: values.expenseId });
+      return toast.success("Expense deleted!");
+    } catch (e) {
+      throw new Error("There was a problem deleting your expense.");
+    }
+  }
 }
 
 const BudgetPage = () => {
