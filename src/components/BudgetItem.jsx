@@ -4,6 +4,7 @@ import {
   formatCurrency,
   formatPercentage,
 } from "../helpers";
+import { Form, Link } from "react-router-dom";
 
 const BudgetItem = ({ budget, showDelete = false }) => {
   const { id, name, amount, color } = budget;
@@ -21,6 +22,13 @@ const BudgetItem = ({ budget, showDelete = false }) => {
         <small>{formatCurrency(spent)} spent</small>
         <small>{formatCurrency(amount - spent)} remaining</small>
       </div>
+      {showDelete ? (
+        <Form>
+          <p>Hi</p>
+        </Form>
+      ) : (
+        <Link></Link>
+      )}
     </div>
   );
 };
