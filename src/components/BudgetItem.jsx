@@ -5,6 +5,7 @@ import {
   formatPercentage,
 } from "../helpers";
 import { Form, Link } from "react-router-dom";
+import { BanknotesIcon } from "@heroicons/react/24/outline";
 
 const BudgetItem = ({ budget, showDelete = false }) => {
   const { id, name, amount, color } = budget;
@@ -27,7 +28,10 @@ const BudgetItem = ({ budget, showDelete = false }) => {
           <p>Hi</p>
         </Form>
       ) : (
-        <Link></Link>
+        <Link to={`/budget/${id}`}>
+          <span>View Details</span>
+          <BanknotesIcon width={20} />
+        </Link>
       )}
     </div>
   );
