@@ -24,14 +24,18 @@ const BudgetItem = ({ budget, showDelete = false }) => {
         <small>{formatCurrency(amount - spent)} remaining</small>
       </div>
       {showDelete ? (
-        <Form>
-          <p>Hi</p>
-        </Form>
+        <div className="flex-sm">
+          <Form>
+            <p>Hi</p>
+          </Form>
+        </div>
       ) : (
-        <Link to={`/budget/${id}`}>
-          <span>View Details</span>
-          <BanknotesIcon width={20} />
-        </Link>
+        <div className="flex-sm">
+          <Link to={`/budget/${id}`} className="btn">
+            <span>View Details</span>
+            <BanknotesIcon width={20} />
+          </Link>
+        </div>
       )}
     </div>
   );
