@@ -25,9 +25,7 @@ const BudgetItem = ({ budget, showDelete = false }) => {
       </div>
       {showDelete ? (
         <div className="flex-sm">
-          <Form>
-            <p>Hi</p>
-          </Form>
+          <Form method="post"></Form>
         </div>
       ) : (
         <div className="flex-sm">
