@@ -6,6 +6,7 @@ import {
 } from "../helpers";
 import { Form, Link } from "react-router-dom";
 import { BanknotesIcon } from "@heroicons/react/24/outline";
+import { TrashIcon } from "@heroicons/react/24/solid";
 
 const BudgetItem = ({ budget, showDelete = false }) => {
   const { id, name, amount, color } = budget;
@@ -25,7 +26,20 @@ const BudgetItem = ({ budget, showDelete = false }) => {
       </div>
       {showDelete ? (
         <div className="flex-sm">
-          <Form method="post"></Form>
+          <Form
+            method="post"
+            action="delete"
+            onSubmit={(event) => {
+              if (!confirm("Are you sure you want to delete this budget?")) {
+                event.preventDefault();
+              }
+            }}
+          >
+            <button type="submit" className="btn">
+              <span>Delete Budget</span>
+              <TrashIcon width={20} />
+            </button>
+          </Form>
         </div>
       ) : (
         <div className="flex-sm">
