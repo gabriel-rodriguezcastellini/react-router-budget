@@ -12,6 +12,12 @@ export function deleteBudget({ params }) {
       key: "budgetId",
       value: params.id,
     });
+    associatedExpenses.forEach((expense) => {
+      deleteItem({
+        key: "expenses",
+        id: expense.id,
+      });
+    });
     toast.success("Budget deleted successfully!");
   } catch (error) {
     throw new Error("There was a problem deleting your budget.");
