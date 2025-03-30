@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
 import { deleteItem, getAllMatchingItems } from "../helpers";
+import { redirect } from "react-router-dom";
 
 export function deleteBudget({ params }) {
   try {
@@ -22,4 +23,5 @@ export function deleteBudget({ params }) {
   } catch (error) {
     throw new Error("There was a problem deleting your budget.");
   }
+  return redirect("/");
 }
